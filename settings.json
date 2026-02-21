@@ -1,0 +1,5 @@
+{
+  "users_file": "data/users.json",
+  "projects_file": "data/projects.json",
+  "tasks_file": "data/tasks.json"
+}
