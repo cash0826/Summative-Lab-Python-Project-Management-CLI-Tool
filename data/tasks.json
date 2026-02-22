@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "title": "Begin coding",
+    "associated_project": "Create CLI",
+    "assigned_to": "Melanie",
+    "status": "Completed"
+  }
+]

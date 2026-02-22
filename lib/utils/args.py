@@ -69,16 +69,17 @@ def parse_args():
   task_subparsers = task_parser.add_subparsers(dest="task_command")
   
   ## Add task command
-  add_task_parser = task_subparsers.add_parser("add_task", help="Add a new task")
+  add_task_parser = task_subparsers.add_parser("add-task", help="Add a new task")
   add_task_parser.add_argument("-t", "--title", required=True, help="Title of the task")
-  add_task_parser.add_argument("-s", "--status", required=True, help="Status of the task")
-  add_task_parser.add_argument("-a", "--assigned_to", required=True, help="User assigned to the task")
   add_task_parser.add_argument("-p", "--project_title", required=True, help="Project title the task is associated with")
+  add_task_parser.add_argument("-a", "--assigned_to", required=True, help="User assigned to the task")
+  add_task_parser.add_argument("-s", "--status", required=False, help="Status of the task")
   add_task_parser.set_defaults(func=add_task) # add task to be defined
   
   ## Complete task command
-  complete_task_parser = task_subparsers.add_parser("complete_task", help="Mark a task as completed")
+  complete_task_parser = task_subparsers.add_parser("complete-task", help="Mark a task as completed")
   complete_task_parser.add_argument("-t", "--task", required=True, help="Name of the task to mark as completed")
+  complete_task_parser.add_argument("-p", "--project_title", required=True, help="Project title the task is associated with")
   complete_task_parser.set_defaults(func=complete_task) # complete task to be defined
   
   return parser.parse_args()

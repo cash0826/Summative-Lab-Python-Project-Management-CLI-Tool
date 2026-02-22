@@ -21,6 +21,13 @@ class ProjectsControllers():
     if not any(user["email"] == args.owner_email for user in users):
       print(f"Error: No user found with email {args.owner_email}.")
       return None
+    
+    # check if project with same title already exists
+    if any(project.title == args.title for project in self.data):
+      print(f"Error: A project with the title '{args.title}' already exists.")
+      return None
+    
+    # Append new project to data list
     new_project = Project(title=args.title, description=args.description, due_date=args.due_date, owner_email=args.owner_email)
     self.data.append(new_project)
     print(f"Added project: {new_project.title} was successfully added: {new_project}")
