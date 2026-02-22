@@ -3,10 +3,42 @@ from lib.models.task import Task
 
 class Project():
   def __init__(self, title, description, due_date, owner_email=None):
-    self.title = title
-    self.description = description
-    self.due_date = due_date
-    self.owner_email = owner_email
+    self._title = title
+    self._description = description
+    self._due_date = due_date
+    self._owner_email = owner_email
+    
+  @property
+  def title(self):
+    return self._title
+  
+  @property
+  def description(self):
+    return self._description
+  
+  @property
+  def due_date(self):
+    return self._due_date
+  
+  @property
+  def owner_email(self):
+    return self._owner_email
+  
+  @title.setter
+  def title(self, value):
+    self._title = value
+    
+  @description.setter
+  def description(self, value):
+    self._description = value
+  
+  @due_date.setter
+  def due_date(self, value):
+    self._due_date = value
+    
+  @owner_email.setter
+  def owner_email(self, value):
+    self._owner_email = value
     
   @classmethod
   def from_dict(cls, data):
