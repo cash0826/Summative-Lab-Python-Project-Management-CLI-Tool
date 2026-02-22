@@ -46,8 +46,4 @@ def parse_args():
   complete_task_parser.add_argument("--task", required=True, help="Name of the task to mark as completed")
   complete_task_parser.set_defaults(func=complete_task) # complete task to be defined
   
-  # Help command
-  help_parser = parser.add_parser("help", help="Show this help message")
-  help_parser.set_defaults(func=lambda args: parser.print_help())
-  
   return parser.parse_args()

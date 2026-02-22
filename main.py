@@ -7,10 +7,10 @@ def main():
   # CLI Entry Point
   args = parse_args()
   if hasattr(args, "func"):
-    args.func(args)
+    args.func(args)  # Call the function associated with the command
   else:
-    argparse.ArgumentParser(description="Project Management CLI Tool").print_help()
-
+    print("No command provided. Use --help for more information.")
+  
   print("[END]")
 
 if __name__ == "__main__":
