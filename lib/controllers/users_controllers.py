@@ -1,4 +1,4 @@
-from lib.models.models import User
+from lib.models.user import User
 from lib.utils import storage
 
 class UsersControllers:
@@ -19,10 +19,10 @@ class UsersControllers:
       print(f"Error: User with email {args.email} already exists.")
       return None
     
-    user = User(name=args.name, email=args.email)
-    self.data.append(user)
-    print(f"Added user: {user.name} was successfully added: {user}")
-    return user
+    new_user = User(name=args.name, email=args.email)
+    self.data.append(new_user)
+    print(f"Added user: {new_user.name} was successfully added: {new_user}")
+    return new_user
   
   def list_users(self):
     if not self.data:
