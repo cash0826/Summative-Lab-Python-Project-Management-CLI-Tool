@@ -29,5 +29,5 @@ class UsersControllers:
       print("No users found.")
       return []
     for user in self.data:
-      print(f"[User] Name: {user.name}, Email: {user.email}")
+      print(f"Users:\n{user.name}, <{user.email}>")
     return self.data
