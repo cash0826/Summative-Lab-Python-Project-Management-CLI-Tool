@@ -9,14 +9,18 @@ class User(Person):
   def __init__(self, name, email):
     super().__init__(name, email)
     
-  @classmethod
-  def from_dict(cls, data):
-    return cls(name=data["name"], email=data["email"])
+  def to_dict(self):
+    return {"name": self.name, "email": self.email}
     
   @classmethod
-  def from_json(cls, json_str):
-    data = json.loads(json_str)
-    return cls.from_dict(data)
+  def from_dict(cls, data):
+    return cls(name=data.get("name"), email=data.get("email"))
+  
+  def user_projects(self):
+    return [project for project in Project.all_projects if project.owner_email == self.email]
+  
+  def __str__(self):
+    return str(self.to_dict())
   
 class Project():
   def __init__(self, title, description, due_date):
@@ -32,7 +36,13 @@ class Project():
   def from_json(cls, json_str):
     data = json.loads(json_str)
     return cls.from_dict(data)
-
+  
+  def tasks(self):
+    return [task for task in Task.all_tasks if task.project_title == self.title]
+  
+  def __str__(self):
+    return str(self.to_dict())
+  
 class Task():
   def __init__(self, title, status, assigned_to):
     self.title = title
@@ -47,3 +57,6 @@ class Task():
   def from_json(cls, json_str):
     data = json.loads(json_str)
     return cls.from_dict(data)
+  
+  def __str__(self):
+    return str(self.to_dict())

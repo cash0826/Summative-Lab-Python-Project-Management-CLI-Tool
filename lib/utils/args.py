@@ -1,4 +1,14 @@
 import argparse
+from lib.controllers.users_controllers import UsersControllers
+
+def add_user_command(args):
+    with UsersControllers("./data/users.json") as controller:
+        return controller.add_user(args)
+
+def list_users_command(args):
+    controller = UsersControllers("./data/users.json")
+    with controller:
+        return controller.list_users()
 
 def parse_args():
   parser = argparse.ArgumentParser(description="Project Management CLI Tool")
@@ -7,43 +17,43 @@ def parse_args():
   user_parser = parser.add_subparsers(dest="user_command")
   
   ## Add user command
-  add_user_parser = user_parser.add_parser("add_user", help="Add a new user")
-  add_user_parser.add_argument("--name", required=True, help="Name of the user")
+  add_user_parser = user_parser.add_parser("add-user", help="Add a new user")
+  add_user_parser.add_argument("--name", required=True, help="Name   of the user")
   add_user_parser.add_argument("--email", required=True, help="Email of the user")
-  add_user_parser.set_defaults(func=add_user) # add user to be defined
+  add_user_parser.set_defaults(func=add_user_command)
   
   ## List users command
-  list_users_parser = user_parser.add_parser("list_users", help="List all users")
-  list_users_parser.set_defaults(func=list_users) # list users to be defined
+  list_users_parser = user_parser.add_parser("list-users", help="List all users")
+  list_users_parser.set_defaults(func=list_users_command)
   
-  # Subparsers for Project Management would go here
-  project_parser = parser.add_subparsers(dest="project_command")
+  # # Subparsers for Project Management would go here
+  # project_parser = parser.add_subparsers(dest="project_command")
   
-  ## Add project command
-  add_project_parser = project_parser.add_parser("add_project", help="Add a new project")
-  add_project_parser.add_argument("--title", required=True, help="Title of the project")
-  add_project_parser.add_argument("--description", required=True, help="Description of the project")
-  add_project_parser.add_argument("--due_date", required=True, help="Due date of the project")
-  add_project_parser.set_defaults(func=add_project) # add project to be defined
+  # ## Add project command
+  # add_project_parser = project_parser.add_parser("add_project", help="Add a new project")
+  # add_project_parser.add_argument("--title", required=True, help="Title of the project")
+  # add_project_parser.add_argument("--description", required=True, help="Description of the project")
+  # add_project_parser.add_argument("--due_date", required=True, help="Due date of the project")
+  # add_project_parser.set_defaults(func=add_project) # add project to be defined
   
-  ## List projects by user command
-  list_projects_parser = project_parser.add_parser("list_projects", help="List all projects for a user")
-  list_projects_parser.add_argument("--user_email", required=True, help="Email of the user to list projects for")
-  list_projects_parser.set_defaults(func=list_projects_for_user) # list projects for user to be defined
+  # ## List projects by user command
+  # list_projects_parser = project_parser.add_parser("list_projects", help="List all projects for a user")
+  # list_projects_parser.add_argument("--user_email", required=True, help="Email of the user to list projects for")
+  # list_projects_parser.set_defaults(func=list_projects_for_user) # list projects for user to be defined
   
-  # Subparsers for Task Management would go here
-  task_parser = parser.add_subparsers(dest="task_command")
+  # # Subparsers for Task Management would go here
+  # task_parser = parser.add_subparsers(dest="task_command")
   
-  ## Add task command
-  add_task_parser = task_parser.add_parser("add_task", help="Add a new task")
-  add_task_parser.add_argument("--title", required=True, help="Title of the task")
-  add_task_parser.add_argument("--status", required=True, help="Status of the task")
-  add_task_parser.add_argument("--assigned_to", required=True, help="User assigned to the task")
-  add_task_parser.set_defaults(func=add_task) # add task to be defined
+  # ## Add task command
+  # add_task_parser = task_parser.add_parser("add_task", help="Add a new task")
+  # add_task_parser.add_argument("--title", required=True, help="Title of the task")
+  # add_task_parser.add_argument("--status", required=True, help="Status of the task")
+  # add_task_parser.add_argument("--assigned_to", required=True, help="User assigned to the task")
+  # add_task_parser.set_defaults(func=add_task) # add task to be defined
   
-  ## Complete task command
-  complete_task_parser = task_parser.add_parser("complete_task", help="Mark a task as completed")
-  complete_task_parser.add_argument("--task", required=True, help="Name of the task to mark as completed")
-  complete_task_parser.set_defaults(func=complete_task) # complete task to be defined
+  # ## Complete task command
+  # complete_task_parser = task_parser.add_parser("complete_task", help="Mark a task as completed")
+  # complete_task_parser.add_argument("--task", required=True, help="Name of the task to mark as completed")
+  # complete_task_parser.set_defaults(func=complete_task) # complete task to be defined
   
   return parser.parse_args()
