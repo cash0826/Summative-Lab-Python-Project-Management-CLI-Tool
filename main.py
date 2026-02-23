@@ -1,8 +1,10 @@
 from lib.utils.args import parse_args
 import argparse
+import typer
+
+app = typer.Typer()
 
 def main():
-  print("[START]")
   
   # CLI Entry Point
   args = parse_args()
@@ -10,8 +12,6 @@ def main():
     args.func(args)  # Call the function associated with the command
   else:
     print("No command provided. Use --help for more information.")
-  
-  print("[END]")
 
 if __name__ == "__main__":
   main()
