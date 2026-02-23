@@ -2,5 +2,13 @@
   {
     "name": "Melanie",
     "email": "melanie@email.com"
+  },
+  {
+    "name": "Test User",
+    "email": "test@example.com"
+  },
+  {
+    "name": "Test User",
+    "email": "duplicate@example.com"
   }
 ]
