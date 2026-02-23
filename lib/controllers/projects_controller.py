@@ -1,5 +1,6 @@
 from lib.models.project import Project
 from lib.utils import storage
+from datetime import datetime
 
 class ProjectsControllers():
   def __init__(self, filepath):
@@ -27,8 +28,15 @@ class ProjectsControllers():
       print(f"Error: A project with the title '{args.title}' already exists.")
       return None
     
+    # check if due_date is a valid date
+    try:
+      due_date = datetime.strptime(args.due_date, '%m/%d/%Y').date()
+    except ValueError:
+      print("Due Date needs to be in this date format: MM/DD/YYYY")
+      return None
+    
     # Append new project to data list
-    new_project = Project(title=args.title, description=args.description, due_date=args.due_date, owner_email=args.owner_email)
+    new_project = Project(title=args.title, description=args.description, due_date=due_date, owner_email=args.owner_email)
     self.data.append(new_project)
     print(f"Added project: {new_project.title} was successfully added: {new_project}")
     return new_project

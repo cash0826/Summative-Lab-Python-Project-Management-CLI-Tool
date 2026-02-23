@@ -42,7 +42,7 @@ For task, these are the options: `add-task`, `complete-tasks`
 
 ## Known Issues & Concepts Left to Expand on
 - Improve commands to be more user friendly
-- General structure needs improvement: Tasks should fall under projects, and projects should fall under users
-- due_date validation for an actual date
-- import PyPi to improve readability
-- unit testing
+- General structure could improve: Tasks should fall under Projects, and Projects should fall under Users
+- due_date validation for an actual date (Done!)
+- Import PyPi packages to improve readability (Attempted. With Typer, subcommands are simplified but would require completely changing the code)
+- Unit testing

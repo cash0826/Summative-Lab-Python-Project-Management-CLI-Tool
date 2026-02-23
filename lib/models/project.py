@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from lib.models.task import Task
 
 class Project():
@@ -42,7 +43,8 @@ class Project():
     
   @classmethod
   def from_dict(cls, data):
-    return cls(title=data["title"], description=data["description"], due_date=data["due_date"], owner_email=data.get("owner_email"))
+    due_date = datetime.strptime(data["due_date"], '%m/%d/%Y').date()
+    return cls(title=data["title"], description=data["description"], due_date=due_date, owner_email=data.get("owner_email"))
   
   @classmethod
   def from_json(cls, json_str):
@@ -53,7 +55,7 @@ class Project():
     return {
       "title": self.title,
       "description": self.description,
-      "due_date": self.due_date,
+      "due_date": self.due_date.strftime('%m/%d/%Y'),
       "owner_email": self.owner_email
     }
   

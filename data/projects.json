@@ -12,9 +12,9 @@
     "owner_email": "melanie@email.com"
   },
   {
-    "title": "Create API",
-    "description": "Use CRUD to create API",
-    "due_date": "02/21/2026",
+    "title": "Create a website with React",
+    "description": "Use react to create a website",
+    "due_date": "02/22/2026",
     "owner_email": "melanie@email.com"
   }
 ]
