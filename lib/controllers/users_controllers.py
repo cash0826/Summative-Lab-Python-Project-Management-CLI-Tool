@@ -14,7 +14,7 @@ class UsersControllers:
       storage.save_data(self.filepath, [user.to_dict() for user in self.data])
   
   def add_user(self, args):
-    # check if user already has a matching email
+    # check if user already has an email registered (duplicate)
     if any(user.email == args.email for user in self.data):
       print(f"Error: User with email {args.email} already exists.")
       return None

@@ -1,8 +1,5 @@
 from lib.utils.args import parse_args
 import argparse
-import typer
-
-app = typer.Typer()
 
 def main():
   
